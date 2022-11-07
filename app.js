@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 //const { urlencoded } = require("express");
 
 let items = ["buy food", "cook food", "eat food"];
+let workItems = [];
 
 
 const app = express();
@@ -35,6 +36,19 @@ app.post("/", function(req,res){
     items.push(item);
     res.redirect("/");
 });
+
+app.get("/work", function(req, res){
+    res.render("list", {
+        listTitle : "Work List",
+        newListItems : workItems
+    });
+});
+
+app.post("/work", function(req,res){
+    let workItem = req.body.newItem;
+    workItems.push(workItem);
+})
+
 
 app.listen(3000, function(){
     console.log("server is running on port 3000");
