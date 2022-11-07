@@ -26,15 +26,24 @@ app.get("/", function(req,res){
     let day = today.toLocaleDateString("en-US", option);
 
     res.render("list", {
-        kindOfDay : day,
+        listTitle : day,
         newListItems : items,
     });
 });
 
 app.post("/", function(req,res){
+
+    let currTitle = req.body.button;
+
     let item = req.body.newItem;
-    items.push(item);
-    res.redirect("/");
+
+    if(currTitle === "Work"){
+        workItems.push(item);
+        res.redirect("/work");
+    }else{ 
+        items.push(item);
+        res.redirect("/");
+    }
 });
 
 app.get("/work", function(req, res){
@@ -45,9 +54,8 @@ app.get("/work", function(req, res){
 });
 
 app.post("/work", function(req,res){
-    let workItem = req.body.newItem;
-    workItems.push(workItem);
-})
+
+});
 
 
 app.listen(3000, function(){
