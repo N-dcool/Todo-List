@@ -87,6 +87,7 @@ input[type="text"]:focus {
 ::placeholder {
   color: grey;
   opacity: 1;
+  
 }
 
 footer {
